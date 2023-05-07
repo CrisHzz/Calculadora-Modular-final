@@ -191,40 +191,7 @@ def raices_cuadradas_modulares2(B, C):
     return raices
 
 
-def tonelli_shanks(n, p):
-    assert (n < p) and (n >= 0) and (p >= 2)
-    if n == 0:
-        return 0
-    if p == 2:
-        return n
-    if pow(n, (p - 1) // 2, p) != 1:
-        return None
-    if p % 4 == 3:
-        return pow(n, (p + 1) // 4, p)
-    q = p - 1
-    s = 0
-    while q % 2 == 0:
-        q //= 2
-        s += 1
-    z = 2
-    while pow(z, (p - 1) // 2, p) != p - 1:
-        z += 1
-    c = pow(z, q, p)
-    r = pow(n, (q + 1) // 2, p)
-    t = pow(n, q, p)
-    m = s
-    while (t - 1) % p != 0:
-        tt = (t * t) % p
-        i = 0
-        while (tt - 1) % p != 0:
-            tt = (tt * tt) % p
-            i += 1
-        b = pow(c, pow(2, m - i - 1), p)
-        r = (r * b) % p
-        t = (t * b * b) % p
-        c = (b * b) % p
-        m = i
-    return r
+
 
 
 
