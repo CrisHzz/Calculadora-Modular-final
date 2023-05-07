@@ -181,9 +181,9 @@ def raices_cuadradas_modulares(A, C):
 def raices_cuadradas_modulares2(B, C):
     numero = B % C
     raices = []
-    for x in range(C):
-        if (x * x) % C == numero:
-            raices.append(x)
+    for r in range(C):
+        if (r * r) % C == numero:
+            raices.append(r)
     if raices:
         print(f"Las raíces cuadradas modulares de {B} módulo {C} son: {', '.join(map(str, raices))}")
     else:
