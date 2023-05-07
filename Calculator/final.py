@@ -45,7 +45,7 @@ def menu(usuario):
         resultado_producto = multiplicacion_modular(usuario.A, usuario.B, usuario.C)
         print(f"El resultado de la multiplicacion modular es: {resultado_producto}")
     elif opcion == 3:
-        usuario.numeros_del_Usuario()
+        usuario.solo_AyC()
         resultado_producto=inverso_modular(usuario.A,usuario.C)
         print(f"El resultado del inverso modular es: {resultado_producto}")
     elif opcion == 4:
@@ -61,16 +61,20 @@ def menu(usuario):
         
 
     elif opcion == 6:
+        print("Ingrese los numeros A y B , y el modulo C para verificar sus raices cuadradas \nTenga en cuenta El sistema le dara el resultado del A con C y B con C")
+        usuario.numeros_del_Usuario()
         print("Caso 1")
         print("")
-        print("Recuerde que en este caso A sera el radicando y C sera el modulo")
-        usuario.numeros_del_Usuario()
-        resultado_raiz=raices_cuadradas_modulares(usuario.A,usuario.C)
+        raices_cuadradas_modulares(usuario.A,usuario.C)
         print("")
         print("Caso 2")
         print("")
-        print("Recuerde que en este caso B sera el radicando y C sera el modulo")
-        resultado_raiz2=raices_cuadradas_modulares2(usuario.B,usuario.C)
+        raices_cuadradas_modulares2(usuario.B,usuario.C)
+
+    elif opcion == 7:
+        print("Ingresar porfavor el modulo C para verificar los cuadrados perfectos")
+        usuario.solo_C()
+        cuadrados_perfectos(usuario.C)
 
     elif opcion == 8:
         print("Gracias por usar esta calculadora modular")
@@ -120,6 +124,41 @@ class Usuario:
                 break
             except ValueError:
                 print("Por favor ingrese un número entero para A, B y C.")
+
+    def solo_C(self):
+        while True:
+            try:
+                self.C=int(input("Ingrese el numero C entero positivo Este sera su modulo "))
+
+                if self.C == 0:
+                    print("El valor de C no puede ser cero. Por favor ingrese un número entero distinto de cero.")
+                    continue
+
+                if self.C < 0:
+                    print("Por favor ingrese un numero entero positivo")
+                    continue
+
+                break
+            except ValueError:
+                print("Por favor ingrese un número entero para C.")
+    
+    def solo_AyC(self):
+        while True:
+            try:
+                self.A=int(input("Ingrese el numero A entero positivo "))
+                self.C=int(input("Ingrese el numero C entero positivo Este sera su modulo "))
+
+                if self.C == 0:
+                    print("El valor de C no puede ser cero. Por favor ingrese un número entero distinto de cero.")
+                    continue
+
+                if self.A < 0 or self.C < 0:
+                    print("Por favor ingrese un numero entero positivo")
+                    continue
+
+                break
+            except ValueError:
+                print("Por favor ingrese un número entero para A y C.")
 
 def suma_modular(A,B,C):
     return (A + B) % C
@@ -190,9 +229,10 @@ def raices_cuadradas_modulares2(B, C):
         print(f"No hay raíces cuadradas modulares de {B} módulo {C}")
     return raices
 
-
-
-
+def cuadrados_perfectos(C):
+    lst_cuadrados = sorted(set((x * x) % C for x in range(0, C)))
+    print(f"Los cuadrados perfectos de {C} son {lst_cuadrados}")
+    print(f"La cantidad de cuadrados perfectos es {len(lst_cuadrados)}")
 
 
 usuario = Usuario()
