@@ -182,6 +182,7 @@ def inverso_modular(A, C):
         return "No hay inverso modular en la operacion"
     else:
         return x % C
+    
 
 def division_modular(A, B, C):
     if A < C:
@@ -192,6 +193,8 @@ def division_modular(A, B, C):
     if isinstance(inverso, int):
         division = (A * inverso) % C
         return division
+    else:
+        return "No se puede realizar la division modular porque el maximo comun divisor de B y C no es igual a 1"
     
 def potenciacion_modular(A, B, C):
     resultado = 1
