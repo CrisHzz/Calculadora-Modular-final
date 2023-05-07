@@ -62,13 +62,15 @@ def menu(usuario):
 
     elif opcion == 6:
         print("Caso 1")
+        print("")
         print("Recuerde que en este caso A sera el radicando y C sera el modulo")
         usuario.numeros_del_Usuario()
-        resultado_raiz=raizCuadradaModular(usuario.A,usuario.C)
+        resultado_raiz=raices_cuadradas_modulares(usuario.A,usuario.C)
         print("")
         print("Caso 2")
+        print("")
         print("Recuerde que en este caso B sera el radicando y C sera el modulo")
-        resultado_raiz2=raizCuadradaModular(usuario.B,usuario.C)
+        resultado_raiz2=raices_cuadradas_modulares2(usuario.B,usuario.C)
 
     elif opcion == 8:
         print("Gracias por usar esta calculadora modular")
@@ -79,7 +81,7 @@ def menu(usuario):
         menu(usuario)
 
     while True:
-        reiniciar = input("¿Desea realizar otra operacion? (S/N): ")
+        reiniciar = input("¿Desea seguir operando ? (S/N): ")
         if reiniciar.lower() == "s":
             menu(usuario)
         elif reiniciar.lower() == "n":
@@ -162,36 +164,30 @@ def potenciacion_modular(A, B, C):
         A = (A * A) % C
     return resultado
 
-def raizCuadradaModular(A, C):
-    valor = A % C
+def raices_cuadradas_modulares(A, C):
     raices = []
-    for x in range(0, C):
-        a = x * x
-        if a % C == valor:
-            raices.append(x)
-    if len(raices) > 0:
-        lst_raices = str(raices)[1:-1]
-        print("Las raices cuadradas son:", lst_raices)
+    numero = A % C
+    for r in range(C):
+        if (r * r) % C == numero:
+            raices.append(r)
+    if raices:
+        print(f"Las raíces cuadradas modulares de {A} módulo {C} son: {', '.join(map(str, raices))}")
     else:
-        print("La raiz cuadrada modular no existe")
-
+        print(f"No hay raíces cuadradas modulares de {A} módulo {C}")
     return raices
 
 
 
-def raizCuadradaModular2(B, C):
-    valor = B % C
+def raices_cuadradas_modulares2(B, C):
+    numero = B % C
     raices = []
-    for x in range(0, C):
-        a = x * x
-        if a % C == valor:
+    for x in range(C):
+        if (x * x) % C == numero:
             raices.append(x)
-    if len(raices) > 0:
-        lst_raices = str(raices)[1:-1]
-        print("Las raices cuadradas son:", lst_raices)
+    if raices:
+        print(f"Las raíces cuadradas modulares de {B} módulo {C} son: {', '.join(map(str, raices))}")
     else:
-        print("La raiz cuadrada modular no existe")
-
+        print(f"No hay raíces cuadradas modulares de {B} módulo {C}")
     return raices
 
 
