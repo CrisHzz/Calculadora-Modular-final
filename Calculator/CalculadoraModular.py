@@ -39,25 +39,25 @@ def menu(usuario):
         usuario.numeros_del_Usuario()
         
         resultado_suma = suma_modular(usuario.A, usuario.B, usuario.C)
-        print(f"El resultado de la suma modular es: {resultado_suma}")
+        print(f"El resultado de la suma modular es: {resultado_suma} con el modulo Z_{usuario.C}")
     elif opcion == 2:
         usuario.numeros_del_Usuario()
         resultado_producto = multiplicacion_modular(usuario.A, usuario.B, usuario.C)
-        print(f"El resultado de la multiplicacion modular es: {resultado_producto}")
+        print(f"El resultado de la multiplicacion modular es: {resultado_producto} con el modulo Z_{usuario.C}")
     elif opcion == 3:
         usuario.solo_AyC()
         resultado_producto=inverso_modular(usuario.A,usuario.C)
-        print(f"El resultado del inverso modular es: {resultado_producto}")
+        print(f"El resultado del inverso modular es: {resultado_producto} con el modulo Z_{usuario.C}")
     elif opcion == 4:
         usuario.numeros_del_Usuario()
         resultado_division = division_modular(usuario.A, usuario.B, usuario.C)
-        print(f"El resultado de la division modular es: {resultado_division}")
+        print(f"El resultado de la division modular es: {resultado_division} con el modulo Z_{usuario.C}")
 
     elif opcion == 5:
         print("Recuerde que en este caso A sera la base, B sera el exponente y C sera el modulo")
         usuario.numeros_del_Usuario()
         resultado_potenciacion=potenciacion_modular(usuario.A,usuario.B,usuario.C)
-        print(f"El resultado de la potenciacion modular es: {resultado_potenciacion}")
+        print(f"El resultado de la potenciacion modular es: {resultado_potenciacion} con el modulo Z_{usuario.C}")
         
 
     elif opcion == 6:
@@ -213,9 +213,9 @@ def raices_cuadradas_modulares(A, C):
         if (r * r) % C == numero:
             raices.append(r)
     if raices:
-        print(f"Las raíces cuadradas modulares de {A} módulo {C} son: {', '.join(map(str, raices))}")
+        print(f"Las raíces cuadradas modulares de {A} módulo Z_{C} son: {', '.join(map(str, raices))}")
     else:
-        print(f"No hay raíces cuadradas modulares de {A} módulo {C}")
+        print(f"No hay raíces cuadradas modulares de {A} módulo Z_{C}")
     return raices
 
 
@@ -227,14 +227,14 @@ def raices_cuadradas_modulares2(B, C):
         if (r * r) % C == numero:
             raices.append(r)
     if raices:
-        print(f"Las raíces cuadradas modulares de {B} módulo {C} son: {', '.join(map(str, raices))}")
+        print(f"Las raíces cuadradas modulares de {B} módulo Z_{C} son: {', '.join(map(str, raices))}")
     else:
-        print(f"No hay raíces cuadradas modulares de {B} módulo {C}")
+        print(f"No hay raíces cuadradas modulares de {B} módulo Z_{C}")
     return raices
 
 def cuadrados_perfectos(C):
     lst_cuadrados = sorted(set((x * x) % C for x in range(0, C)))
-    print(f"Los cuadrados perfectos de {C} son {lst_cuadrados}")
+    print(f"Los cuadrados perfectos del modulo Z_{C} son {lst_cuadrados}")
     print(f"La cantidad de cuadrados perfectos es {len(lst_cuadrados)}")
 
 
