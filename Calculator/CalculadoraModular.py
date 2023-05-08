@@ -108,22 +108,16 @@ class Usuario:
 
     def numeros_del_Usuario(self):
         while True:
-            try:
-                self.A=int(input("Ingrese el numero A entero positivo "))
-                self.B=int(input("Ingrese el numero B entero positivo "))
-                self.C=int(input("Ingrese el numero C entero positivo Este sera su modulo "))
 
-                if self.C == 0:
-                    print("El valor de C no puede ser cero. Por favor ingrese un número entero distinto de cero.")
-                    continue
+            self.A = int(input("Ingrese el número A entero (puede ser positivo o negativo): "))
+            self.B = int(input("Ingrese el número B entero (puede ser positivo o negativo): "))
+            self.C = int(input("Ingrese el número C entero positivo. Este será su módulo: "))
 
-                if self.A < 0 or self.B < 0 or self.C < 0:
-                    print("Por favor ingrese un numero entero positivo")
-                    continue
-
+            if self.C <= 0:
+                print("El valor de C debe ser un número entero positivo. Por favor, ingrese un número entero mayor a cero.")
+            else:
                 break
-            except ValueError:
-                print("Por favor ingrese un número entero para A, B y C.")
+               
 
     def solo_C(self):
         while True:
@@ -142,23 +136,17 @@ class Usuario:
             except ValueError:
                 print("Por favor ingrese un número entero para C.")
     
+    
     def solo_AyC(self):
         while True:
-            try:
-                self.A=int(input("Ingrese el numero A entero positivo "))
-                self.C=int(input("Ingrese el numero C entero positivo Este sera su modulo "))
+            self.A = int(input("Ingrese el número A entero (puede ser positivo o negativo): "))
+            self.C = int(input("Ingrese el número C entero positivo. Este será su módulo: "))
 
-                if self.C == 0:
-                    print("El valor de C no puede ser cero. Por favor ingrese un número entero distinto de cero.")
-                    continue
-
-                if self.A < 0 or self.C < 0:
-                    print("Por favor ingrese un numero entero positivo")
-                    continue
-
+            if self.C <= 0:
+                print("El valor de C debe ser un número entero positivo. Por favor, ingrese un número entero mayor a cero.")
+            else:
                 break
-            except ValueError:
-                print("Por favor ingrese un número entero para A y C.")
+
 
 def suma_modular(A,B,C):
     return (A + B) % C
