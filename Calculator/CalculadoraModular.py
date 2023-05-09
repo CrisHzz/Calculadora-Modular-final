@@ -199,7 +199,7 @@ def inversos_modulo_solo(C):
             if operacion % C == 1:
                 inversos.append(A)
 
-    print(f"Se encontraron {len(inversos)} inversos en mod {C}")
+    print(f"Existen un total de {len(inversos)} inversos en mod Z_{C}")
 
    
 def potenciacion_modular(A, B, C):
