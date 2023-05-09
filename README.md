@@ -23,5 +23,7 @@ Este proyecto es creado por Cristian Hernandez y contara con las siguientes func
 
 -Cuadrados perfectos
 
+-Lista de inversos modulares
+
 Todo esto si es posible
 
