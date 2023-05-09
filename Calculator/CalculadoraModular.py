@@ -24,8 +24,9 @@ def menu(usuario):
     print("")
     print(7, "Cuadrados perfectos")
     print("")
-    print(8, "Salir")
-
+    print(8, "Lista de inversos modulares con solo el modulo dado")
+    print("")
+    print(9, "Salir")
     print("")
     print("RECUERDE EL 0 NUNCA PUEDE SER USADO COMO MODULO")
     print("")
@@ -77,6 +78,12 @@ def menu(usuario):
         cuadrados_perfectos(usuario.C)
 
     elif opcion == 8:
+        print("Ingrese porfavor el modulo con cual desea que se genere la lista de inversos modulares")
+        usuario.solo_C()
+        inversos_modulo_solo(usuario.C)
+
+
+    elif opcion == 9:
         print("Gracias por usar esta calculadora modular")
         sys.exit()
 
@@ -184,6 +191,17 @@ def division_modular(A, B, C):
     else:
         return "No se puede realizar la division modular porque el maximo comun divisor de B y C no es igual a 1"
     
+def inversos_modulo_solo(C):
+    inversos = []
+    for A in range(0, C):
+        for X in range(1, C):
+            operacion = (A % C) * (X % C)
+            if operacion % C == 1:
+                inversos.append(A)
+
+    print(f"Se encontraron {len(inversos)} inversos en mod {C}")
+
+   
 def potenciacion_modular(A, B, C):
     resultado = 1
     A = A % C
