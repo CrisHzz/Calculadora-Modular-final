@@ -206,7 +206,7 @@ def inversos_modulo_solo(C):
                 pares.append((A, X))
                 print("({},{})".format(A, X))
     cantidad_pares = len(pares)
-    print("Cantidad de pares (A, X) que satisfacen la ecuación: ", cantidad_pares)
+    print("Cantidad numerica de los pares que satisfacen el modulo del usuario que ingreso es: ", cantidad_pares)
     return inversos, pares
 
    
