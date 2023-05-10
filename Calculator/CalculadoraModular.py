@@ -194,12 +194,17 @@ def division_modular(A, B, C):
 def inversos_modulo_solo(C):
     inversos = []
     for A in range(0, C):
+        x_values = [] 
         for X in range(1, C):
             operacion = (A % C) * (X % C)
             if operacion % C == 1:
                 inversos.append(A)
+                x_values.append(X)  
+        if x_values:  
+            for X in x_values:
+                print("({},{})".format(A, X))
+    return inversos
 
-    print(f"Existen un total de {len(inversos)} inversos en mod Z_{C}")
 
    
 def potenciacion_modular(A, B, C):
