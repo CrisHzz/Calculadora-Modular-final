@@ -193,8 +193,9 @@ def division_modular(A, B, C):
     
 def inversos_modulo_solo(C):
     inversos = []
+    pares = []  
     for A in range(0, C):
-        x_values = [] 
+        x_values = []  
         for X in range(1, C):
             operacion = (A % C) * (X % C)
             if operacion % C == 1:
@@ -202,9 +203,11 @@ def inversos_modulo_solo(C):
                 x_values.append(X)  
         if x_values:  
             for X in x_values:
+                pares.append((A, X))
                 print("({},{})".format(A, X))
-    return inversos
-
+    cantidad_pares = len(pares)
+    print("Cantidad de pares (A, X) que satisfacen la ecuación: ", cantidad_pares)
+    return inversos, pares
 
    
 def potenciacion_modular(A, B, C):
