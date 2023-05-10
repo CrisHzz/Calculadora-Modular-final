@@ -22,8 +22,9 @@ def menu(usuario):
     print("")
     print(7, "Cuadrados perfectos")
     print("")
-    print(8, "Salir")
-
+    print(8, "Lista de inversos modulares con solo el modulo dado")
+    print("")
+    print(9, "Salir")
     print("")
     print("RECUERDE EL 0 NUNCA PUEDE SER USADO COMO MODULO")
     print("")
@@ -37,25 +38,25 @@ def menu(usuario):
         usuario.numeros_del_Usuario()
         
         resultado_suma = suma_modular(usuario.A, usuario.B, usuario.C)
-        print(f"El resultado de la suma modular es: {resultado_suma}")
+        print(f"El resultado de la suma modular es: {resultado_suma} con el modulo Z_{usuario.C}")
     elif opcion == 2:
         usuario.numeros_del_Usuario()
         resultado_producto = multiplicacion_modular(usuario.A, usuario.B, usuario.C)
-        print(f"El resultado de la multiplicacion modular es: {resultado_producto}")
+        print(f"El resultado de la multiplicacion modular es: {resultado_producto} con el modulo Z_{usuario.C}")
     elif opcion == 3:
         usuario.solo_AyC()
         resultado_producto=inverso_modular(usuario.A,usuario.C)
-        print(f"El resultado del inverso modular es: {resultado_producto}")
+        print(f"El resultado del inverso modular es: {resultado_producto} con el modulo Z_{usuario.C}")
     elif opcion == 4:
         usuario.numeros_del_Usuario()
         resultado_division = division_modular(usuario.A, usuario.B, usuario.C)
-        print(f"El resultado de la division modular es: {resultado_division}")
+        print(f"El resultado de la division modular es: {resultado_division} con el modulo Z_{usuario.C}")
 
     elif opcion == 5:
         print("Recuerde que en este caso A sera la base, B sera el exponente y C sera el modulo")
         usuario.numeros_del_Usuario()
         resultado_potenciacion=potenciacion_modular(usuario.A,usuario.B,usuario.C)
-        print(f"El resultado de la potenciacion modular es: {resultado_potenciacion}")
+        print(f"El resultado de la potenciacion modular es: {resultado_potenciacion} con el modulo Z_{usuario.C}")
         
 
     elif opcion == 6:
@@ -75,6 +76,12 @@ def menu(usuario):
         cuadrados_perfectos(usuario.C)
 
     elif opcion == 8:
+        print("Ingrese porfavor el modulo con cual desea que se genere la lista de inversos modulares")
+        usuario.solo_C()
+        inversos_modulo_solo(usuario.C)
+
+
+    elif opcion == 9:
         print("Gracias por usar esta calculadora modular")
         sys.exit()
 
@@ -106,22 +113,16 @@ class Usuario:
 
     def numeros_del_Usuario(self):
         while True:
-            try:
-                self.A=int(input("Ingrese el numero A entero positivo "))
-                self.B=int(input("Ingrese el numero B entero positivo "))
-                self.C=int(input("Ingrese el numero C entero positivo Este sera su modulo "))
 
-                if self.C == 0:
-                    print("El valor de C no puede ser cero. Por favor ingrese un número entero distinto de cero.")
-                    continue
+            self.A = int(input("Ingrese el número A entero (puede ser positivo o negativo): "))
+            self.B = int(input("Ingrese el número B entero (puede ser positivo o negativo): "))
+            self.C = int(input("Ingrese el número C entero positivo. Este será su módulo: "))
 
-                if self.A < 0 or self.B < 0 or self.C < 0:
-                    print("Por favor ingrese un numero entero positivo")
-                    continue
-
+            if self.C <= 0:
+                print("El valor de C debe ser un número entero positivo. Por favor, ingrese un número entero mayor a cero.")
+            else:
                 break
-            except ValueError:
-                print("Por favor ingrese un número entero para A, B y C.")
+               
 
     def solo_C(self):
         while True:
@@ -140,23 +141,17 @@ class Usuario:
             except ValueError:
                 print("Por favor ingrese un número entero para C.")
     
+    
     def solo_AyC(self):
         while True:
-            try:
-                self.A=int(input("Ingrese el numero A entero positivo "))
-                self.C=int(input("Ingrese el numero C entero positivo Este sera su modulo "))
+            self.A = int(input("Ingrese el número A entero (puede ser positivo o negativo): "))
+            self.C = int(input("Ingrese el número C entero positivo. Este será su módulo: "))
 
-                if self.C == 0:
-                    print("El valor de C no puede ser cero. Por favor ingrese un número entero distinto de cero.")
-                    continue
-
-                if self.A < 0 or self.C < 0:
-                    print("Por favor ingrese un numero entero positivo")
-                    continue
-
+            if self.C <= 0:
+                print("El valor de C debe ser un número entero positivo. Por favor, ingrese un número entero mayor a cero.")
+            else:
                 break
-            except ValueError:
-                print("Por favor ingrese un número entero para A y C.")
+
 
 def suma_modular(A,B,C):
     return (A + B) % C
@@ -194,6 +189,25 @@ def division_modular(A, B, C):
     else:
         return "No se puede realizar la division modular porque el maximo comun divisor de B y C no es igual a 1"
     
+def inversos_modulo_solo(C):
+    inversos = []
+    pares = []  
+    for A in range(0, C):
+        x_values = []  
+        for X in range(1, C):
+            operacion = (A % C) * (X % C)
+            if operacion % C == 1:
+                inversos.append(A)
+                x_values.append(X)  
+        if x_values:  
+            for X in x_values:
+                pares.append((A, X))
+                print("({},{})".format(A, X))
+    cantidad_pares = len(pares)
+    print("Cantidad numerica de los pares que satisfacen el modulo del usuario que ingreso es: ", cantidad_pares)
+    return inversos, pares
+
+   
 def potenciacion_modular(A, B, C):
     resultado = 1
     A = A % C
@@ -211,9 +225,9 @@ def raices_cuadradas_modulares(A, C):
         if (r * r) % C == numero:
             raices.append(r)
     if raices:
-        print(f"Las raíces cuadradas modulares de {A} módulo {C} son: {', '.join(map(str, raices))}")
+        print(f"Las raíces cuadradas modulares de {A} módulo Z_{C} son: {', '.join(map(str, raices))}")
     else:
-        print(f"No hay raíces cuadradas modulares de {A} módulo {C}")
+        print(f"No hay raíces cuadradas modulares de {A} módulo Z_{C}")
     return raices
 
 
@@ -225,14 +239,14 @@ def raices_cuadradas_modulares2(B, C):
         if (r * r) % C == numero:
             raices.append(r)
     if raices:
-        print(f"Las raíces cuadradas modulares de {B} módulo {C} son: {', '.join(map(str, raices))}")
+        print(f"Las raíces cuadradas modulares de {B} módulo Z_{C} son: {', '.join(map(str, raices))}")
     else:
-        print(f"No hay raíces cuadradas modulares de {B} módulo {C}")
+        print(f"No hay raíces cuadradas modulares de {B} módulo Z_{C}")
     return raices
 
 def cuadrados_perfectos(C):
     lst_cuadrados = sorted(set((x * x) % C for x in range(0, C)))
-    print(f"Los cuadrados perfectos de {C} son {lst_cuadrados}")
+    print(f"Los cuadrados perfectos del modulo Z_{C} son {lst_cuadrados}")
     print(f"La cantidad de cuadrados perfectos es {len(lst_cuadrados)}")
 
 
